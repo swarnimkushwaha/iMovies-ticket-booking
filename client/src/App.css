@@ -1,0 +1,201 @@
+:root {
+  --primary-accent: #e50914;
+  --secondary-accent: #f59e0b;
+  --bg-dark: #0b0f19;
+  --card-bg: #131b2e;
+  --surface-hover: #1e293b;
+  --text-muted: #94a3b8;
+  --seat-available: #334155;
+  --seat-vip: #78350f;
+  --seat-vip-border: #f59e0b;
+  --seat-selected: #10b981;
+  --seat-booked: #1f2937;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-dark);
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.cinema-navbar {
+  background-color: rgba(11, 15, 25, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, #e50914, #ff5722);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Hero Section */
+.hero-banner {
+  background: linear-gradient(180deg, rgba(11, 15, 25, 0.4) 0%, var(--bg-dark) 100%),
+              url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600&auto=format&fit=crop&q=80') center/cover;
+  padding: 80px 0 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Movie Cards */
+.movie-card {
+  background-color: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+  border-color: rgba(229, 9, 20, 0.4);
+}
+
+.poster-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  background: #1e293b;
+}
+
+.poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover .poster-img {
+  transform: scale(1.05);
+}
+
+.rating-pill {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  color: #fbbf24;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* Interactive Seat Layout */
+.screen-container {
+  perspective: 600px;
+  text-align: center;
+  margin: 25px 0 35px;
+}
+
+.curved-screen {
+  height: 20px;
+  width: 75%;
+  margin: 0 auto 12px;
+  background: linear-gradient(180deg, #60a5fa 0%, rgba(96, 165, 250, 0.1) 100%);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transform: rotateX(-30deg);
+  box-shadow: 0 10px 30px rgba(96, 165, 250, 0.4);
+}
+
+.screen-text {
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Seat Buttons */
+.seat-button {
+  width: 36px;
+  height: 36px;
+  margin: 4px;
+  border-radius: 8px 8px 4px 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.seat-standard {
+  background-color: var(--seat-available);
+  border: 1px solid #475569;
+  color: #cbd5e1;
+}
+
+.seat-standard:hover:not(.seat-booked) {
+  background-color: #475569;
+  transform: scale(1.1);
+}
+
+.seat-vip {
+  background-color: var(--seat-vip);
+  border: 1px solid var(--seat-vip-border);
+  color: #fef3c7;
+}
+
+.seat-vip:hover:not(.seat-booked) {
+  background-color: #92400e;
+  transform: scale(1.1);
+}
+
+.seat-selected {
+  background-color: var(--seat-selected) !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+  transform: scale(1.08);
+}
+
+.seat-booked {
+  background-color: var(--seat-booked) !important;
+  border-color: #374151 !important;
+  color: #4b5563 !important;
+  cursor: not-allowed;
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+/* Legend */
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Ticket Styling */
+.cinema-ticket {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  position: relative;
+}
+
+.ticket-notch-left, .ticket-notch-right {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: var(--bg-dark);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.ticket-notch-left { left: -10px; }
+.ticket-notch-right { right: -10px; }
